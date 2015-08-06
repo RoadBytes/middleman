@@ -72,6 +72,6 @@ Another problem I had was ordering the tags amongst the table rows and other dat
           = submit_tag "Update Instant Queue", class: "btn btn-default"
 ~~~
 
-So yeah, I had a good time with forms.  It's something trying to learn all this at once, but after getting my hands dirty, at all comes together and learning/understanding sets in.  Any question or comments, feel free to comment or email me.
+So yeah, I had a good time with forms.  It's something trying to learn all this at once, but after getting my hands dirty, it all comes together and learning/understanding sets in.  Any question or comments, feel free to comment or email me.
 
 jason.data@roadbytes.me
