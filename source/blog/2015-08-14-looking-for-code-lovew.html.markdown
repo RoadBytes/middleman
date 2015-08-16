@@ -48,10 +48,10 @@ end
 
 ~~~ Ruby
 %article.row
-  - @Posts.sort_by_date.each do |video|
-    .video.col-md-2
-    = link_to video do 
-      = image_tag video.small_image_url
+  - @Posts.sort_by_date.each do |post|
+    .post.col-md-2
+    = link_to post do 
+      = image_tag post.small_image_url
 ~~~
 
 ### We commit our local branch and push for a pull request.
