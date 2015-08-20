@@ -25,6 +25,7 @@
      <p class="post-date"><%= current_page.date.strftime('<%e %b %Y>') %></p>
      <hr/>
      <%= yield %>
+     <%= partial "partials/analytics" %>
      <%= partial "partials/footer" %>
    </div>
   </body>
