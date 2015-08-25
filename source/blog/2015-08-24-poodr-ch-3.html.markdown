@@ -1,0 +1,84 @@
+---
+title: POODR Ch 3
+date: 2015-08-24 23:50 UTC
+tags: poodr, dependency injection
+---
+
+There are some concepts and information checks I put together for POODR book club with CodeNewbies.  Feel free to try out the concept checks.
+
+# 1.) First concept from POODR Ch 3
+
+## Dependency Injection
+
+~~~ ruby
+class Son
+  attr_reader :money, :bread, :meat, :mayonnaise
+  def initialize(money, bread, meat, mayonnaise)
+    @money      = money
+    @bread      = bread
+    @meat       = meat
+    @mayonnaise = mayonnaise
+  end
+
+  def lunch
+    Mother.new(bread, meat, mayonnaise).prepare
+  end
+end
+
+class Mother
+  attr_reader :meat, :mayonnaise
+  def initialize(meat, mayonnaise)
+    @meat       = meat
+    @mayonnaise = mayonnaise
+  end
+
+  def prepare
+    bread + meat + mayonnaise
+  end
+end
+~~~
+
+<div class="question"> in `Gear`, what are some of the things `lunch` method "knows" about `Mother`? 
+  <div class="answer">
+  
+    <p> + the name of the class `Mother` </p>
+    <p> + the `prepare` method name </p>
+    <p> + how many arguments `prepare` needs </p>
+    <p> + the order of arguments into `prepare` </p>
+  
+  </div>
+</div>
+
+
+### Try decoupling Son and Mother above
+
+<div class="question"> How would decouple the Son class from the Mother class? 
+  <div class="answer">
+    <h2> My Answer </h2>
+    <pre>class Son</pre>
+    <pre>  attr_reader :money, :lunch</pre>
+    <pre>  def initialize(money, lunch)</pre>
+    <pre>    @money = money</pre>
+    <pre>    @lunch = lunch</pre>
+    <pre>  end</pre>
+    <pre>end</pre>
+    <pre></pre>
+    <pre>class Mother</pre>
+    <pre>  attr_reader :meat, :mayonnaise</pre>
+    <pre>  def initialize(meat, mayonnaise)</pre>
+    <pre>    @meat       = meat</pre>
+    <pre>    @mayonnaise = mayonnaise</pre>
+    <pre>  end</pre>
+    <pre></pre>
+    <pre>  def prepare</pre>
+    <pre>    bread + meat + mayonnaise</pre>
+    <pre>  end</pre>
+    <pre>end</pre>
+    <pre></pre>
+    <pre>son_instance = Son.new(5, Mother.new(bread, meat, mayonnaise).prepare)</pre>
+    <br />
+    <p>Mother is untouched and lunch is *pulled out of* `Gear`</p>
+  </div>
+</div>
+
+Note: this is my answer to the questions presented, if you disagree or have other considerations to bring to light, comment below.
