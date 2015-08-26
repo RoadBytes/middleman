@@ -26,8 +26,9 @@ class Son
 end
 
 class Mother
-  attr_reader :meat, :mayonnaise
-  def initialize(meat, mayonnaise)
+  attr_reader :bread, :meat, :mayonnaise
+  def initialize(bread, meat, mayonnaise)
+    @bread      = bread
     @meat       = meat
     @mayonnaise = mayonnaise
   end
@@ -64,8 +65,9 @@ end
     <pre>end</pre>
     <pre></pre>
     <pre>class Mother</pre>
-    <pre>  attr_reader :meat, :mayonnaise</pre>
-    <pre>  def initialize(meat, mayonnaise)</pre>
+    <pre>  attr_reader :bread, :meat, :mayonnaise</pre>
+    <pre>  def initialize(bread, meat, mayonnaise)</pre>
+    <pre>    @bread      = bread</pre>
     <pre>    @meat       = meat</pre>
     <pre>    @mayonnaise = mayonnaise</pre>
     <pre>  end</pre>
