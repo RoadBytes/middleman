@@ -11,7 +11,7 @@ There are some concepts and information checks I put together for POODR book clu
 ## Dependency Injection
 
 ~~~ ruby
-class Son
+class Customer
   attr_reader :money, :bread, :meat, :mayonnaise
   def initialize(money, bread, meat, mayonnaise)
     @money      = money
@@ -21,11 +21,11 @@ class Son
   end
 
   def lunch
-    Mother.new(bread, meat, mayonnaise).prepare
+    Chef.new(bread, meat, mayonnaise).prepare
   end
 end
 
-class Mother
+class Chef
   attr_reader :bread, :meat, :mayonnaise
   def initialize(bread, meat, mayonnaise)
     @bread      = bread
@@ -39,10 +39,10 @@ class Mother
 end
 ~~~
 
-<div class="question"> in `Gear`, what are some of the things `lunch` method "knows" about `Mother`? 
+<div class="question"> in `Customer`, what are some of the things `lunch` method "knows" about `Chef`? 
   <div class="answer">
   
-    <p> + the name of the class `Mother` </p>
+    <p> + the name of the class `Chef` </p>
     <p> + the `prepare` method name </p>
     <p> + how many arguments `prepare` needs </p>
     <p> + the order of arguments into `prepare` </p>
@@ -51,12 +51,12 @@ end
 </div>
 
 
-### Try decoupling Son and Mother above
+### Try decoupling Customer and Chef above
 
-<div class="question"> How would decouple the Son class from the Mother class? 
+<div class="question"> How would decouple the Customer class from the Chef class? 
   <div class="answer">
     <h2> My Answer </h2>
-    <pre>class Son</pre>
+    <pre>class Customer</pre>
     <pre>  attr_reader :money, :lunch</pre>
     <pre>  def initialize(money, lunch)</pre>
     <pre>    @money = money</pre>
@@ -64,7 +64,7 @@ end
     <pre>  end</pre>
     <pre>end</pre>
     <pre></pre>
-    <pre>class Mother</pre>
+    <pre>class Chef</pre>
     <pre>  attr_reader :bread, :meat, :mayonnaise</pre>
     <pre>  def initialize(bread, meat, mayonnaise)</pre>
     <pre>    @bread      = bread</pre>
@@ -77,9 +77,9 @@ end
     <pre>  end</pre>
     <pre>end</pre>
     <pre></pre>
-    <pre>son_instance = Son.new(5, Mother.new(bread, meat, mayonnaise).prepare)</pre>
+    <pre>joe = Customer.new(5, Chef.new(bread, meat, mayonnaise).prepare)</pre>
     <br />
-    <p>Mother is untouched and lunch is *pulled out of* `Gear`</p>
+    <p>Chef is untouched and lunch is *pulled out of* `Gear`</p>
   </div>
 </div>
 

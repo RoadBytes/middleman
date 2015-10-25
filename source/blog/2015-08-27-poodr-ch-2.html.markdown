@@ -1,0 +1,204 @@
+---
+title: POODR Ch 2
+date: 2015-08-27 21:59 UTC
+tags: poodr, object oriented programming
+---
+
+## Notes from POODR Ch 2 for CodeNewbies
+
+**this is for study purposes only, excerpts from POODR are not my work.**
+
+Initially, `ratio` method is made for Gear class.
+
+~~~
+class Gear 
+  attr_reader :chainring, :cog 
+  def initialize( chainring, cog) 
+    @chainring = chainring 
+    @cog = cog 
+  end 
+  
+  def ratio 
+    chainring / cog.to_f 
+  end 
+end 
+
+puts Gear.new( 52, 11).ratio # -> 4.72727272727273 
+puts Gear.new( 30, 27).ratio # -> 1.11111111111111
+
+Metz, Sandi (2012-09-05). Practical Object-Oriented Design in Ruby: An Agile Primer (Addison-Wesley Professional Ruby Series) (Kindle Locations 720-740). Pearson Education. Kindle Edition. 
+~~~
+
+Wheel diameter is added, so `gear_inches` can be considered
+
+* gear_inches = ratio * (rim + 2 * tire)
+
+~~~
+class Gear 
+  attr_reader :chainring, :cog, :rim, :tire
+  def initialize( chainring, cog, rim, tire) 
+    @chainring = chainring 
+    @cog       = cog 
+    @rim       = rim
+    @tire      = tire
+  end 
+  
+  def ratio 
+    chainring / cog.to_f 
+  end 
+
+  def gear_inches
+    ratio * (rim + 2 * tire)
+  end
+end
+
+puts Gear.new( 52, 11, 26, 1.5). gear_inches 
+# -> 137.090909090909 22 23 
+puts Gear.new( 52, 11, 24, 1.25). gear_inches 
+# -> 125.272727272727
+
+Metz, Sandi (2012-09-05). Practical Object-Oriented Design in Ruby: An Agile Primer (Addison-Wesley Professional Ruby Series) (Kindle Locations 782-791). Pearson Education. Kindle Edition.  
+~~~
+
+The problem here is after adding `gear_inches`, `ratio` would not function with only two arguments
+
+~~~
+puts Gear.new(52, 11).ratio 
+# ArgumentError: wrong number of arguments (2 for 4)
+# 	from gear.rb:3:in `initialize'
+# 	from (irb):3:in `new'
+# 	from (irb):3
+~~~
+
+`ratio` No, longer works!!!
+
+This eludes to the idea that Gear may be holding responsibilities that are not cohesive enough.
+
+### How do we make sense of Gear and what's going on?
+
+> Ask questions and try to hone in on what is going on:
+
+* Mr Gear, what's your ratio?
+* Mr Gear, what's your gear_inches?
+* Mr Gear, what's your tire size? # this one's weird
+
+> Using the word 'and' may imply an overly complex class.
+> Perhaps we need a Tire of Bicycle class?
+
+### We don't necessarily know the best decision, postponing change may be appropriate.
+
+## Write code that embraces change
+
+* hide variables, use getters and setter not direct `@variable`
+  * here `cog` is the only place that knows what `@cog/cog` means
+  * ie, multiplying cog by `adj_factor` only requires `def cog; @cog * adj_factor; end`
+  * your data can be thought of as plain old objects
+
+* separate complex data structures with the information itself.
+
+~~~
+// dealing with array
+
+Wheel = Struct.new(: rim, :tire) 
+def wheelify( data) 
+  data.collect {| cell | 
+  Wheel.new( cell[ 0], cell[ 1])} 
+end
+
+Metz, Sandi (2012-09-05). Practical Object-Oriented Design in Ruby: An Agile Primer (Addison-Wesley Professional Ruby Series) (Kindle Locations 1027-1035). Pearson Education. Kindle Edition. 
+~~~
+
+Here, the array of arrays structure is stripped away and instead, `wheels` are instantiated and we work with array of structs
+
+This does several things:
+* expose qualities
+* avoid comments/clarifies intent
+* encourage reuse
+* easy to move to another class
+
+## Refactoring our Gear
+
+First, Wheel struct is implemented in Gear.  This is usually done when the Wheel object exists only for the Gear class.
+
+~~~
+class Gear 
+  attr_reader :chainring, :cog, :wheel
+  def initialize( chainring, cog, rim, tire) 
+    @chainring = chainring 
+    @cog       = cog 
+    @wheel     = Wheel.new(rim, tire)
+  end 
+  
+  def ratio 
+    chainring / cog.to_f 
+  end 
+
+  def gear_inches
+    ratio * wheel.diameter
+  end
+
+  Wheel = Struct.new(:rim, :tire) do 
+    def diameter
+      rim + 2 * tire
+    end
+  end
+end
+~~~
+
+We can also move it out of the Gear class.
+
+~~~
+class Gear 
+  attr_reader :chainring, :cog, :wheel
+  def initialize( chainring, cog, wheel=nil) 
+    @chainring = chainring 
+    @cog       = cog 
+    @wheel     = wheel
+  end 
+  
+  def ratio 
+    chainring / cog.to_f 
+  end 
+
+  def gear_inches
+    ratio * wheel.diameter
+  end
+end
+
+class Wheel 
+  attr_reader :rim, :tire
+  def initialize(rim, tire)
+    @rim  = rim
+    @tire = tire
+  end
+
+  def diameter
+    rim + 2 * tire
+  end
+
+  def circumference
+    diameter * Math::PI
+  end
+end
+~~~
+
+### And this allows us to have certain features from the code:
+
+* Gear can call `ratio` method without necessary 4 arguments
+* Wheel can add more methods like `circumference` and be used with other objects
+* Gear can also be used with the `gear_inches` method if a certain wheel is available
+
+~~~
+> @wheel = Wheel.new(26, 1.5)
+ => #<Wheel:0x007f8f343d8ec8 @rim=26, @tire=1.5> 
+> @wheel.diameter
+ => 29.0 
+> @wheel.circumference
+ => 91.106186954104 
+> Gear.new(52, 11).ratio
+ => 4.7272727272727275 
+> Gear.new(52, 11, @wheel).ratio
+ => 4.7272727272727275 
+> Gear.new(52, 11, @wheel).gear_inches
+ => 137.0909090909091 
+~~~

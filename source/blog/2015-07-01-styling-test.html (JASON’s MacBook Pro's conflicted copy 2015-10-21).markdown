@@ -27,10 +27,4 @@ def ruby_code_test
 end
 ~~~
 
-*italics*
-
-**bold**
-
 Normal p tags would just look like this
-
-line with *italics* and **bold** parts 
