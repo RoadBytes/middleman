@@ -6,7 +6,7 @@ tags: poodr, practice
 
 Train of thought for POODR Ch 2
 
-## friend whats a calculator for gears: 
+## friend wants a calculator for gears: 
 
 * ratio = chainring / cog
 * implement Gear.new(52, 11).ratio
