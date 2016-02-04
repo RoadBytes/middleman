@@ -6,6 +6,12 @@ tags: poodr, ch 3, managing dependencies, summary
 
 POODR ch 3 Managing Dependencies
 
+## Exercises
+
+* I made some files with tests to see if you can refactor the initial `Gear` and `Wheel` implementations so that they follow the concepts from the chapter.
+* Link to the repo is here: 
+  * [https://github.com/RoadBytes/poodr/tree/master/Ch3practice](https://github.com/RoadBytes/poodr/tree/master/Ch3practice)
+
 ## Intro
 
 * Behavior of object:
