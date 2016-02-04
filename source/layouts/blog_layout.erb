@@ -23,6 +23,11 @@
      <% end %>
      <h1><%= current_page.data.title || "Blog Post" %></h1>
      <p class="post-date"><%= current_page.date.strftime('<%e %b %Y>') %></p>
+     <p>
+       <% current_page.tags.each do |tag| %>
+         <%= link_to tag, tag_path(tag) %>
+       <% end %>
+     </p>
      <hr/>
      <%= yield %>
      <%= partial "partials/analytics" %>

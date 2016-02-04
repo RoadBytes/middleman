@@ -7,6 +7,10 @@ activate :blog do |blog|
   blog.layout = "blog_layout"
   blog.summary_separator = /READMORE/
 
+  # Tags configurations
+  blog.taglink = "tags/:tag.html"
+  blog.tag_template = "blog/tag.html"
+
   # Enable pagination
   blog.paginate = true
   blog.per_page = 10

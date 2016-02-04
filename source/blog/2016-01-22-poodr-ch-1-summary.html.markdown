@@ -70,6 +70,7 @@ tags: summary, poodr, ch 1
   * getting a feature out at cost of bad code implementation: *technical debt*
   * one must consider time cost vs technical debt cost to maximize value
   * *it takes experience to judge design appropriately*
+  * Bad metrics strongly imply future difficulties; however, good metrics are less helpful. A design that does the wrong thing might produce great metrics but may still be costly to change.
 
 
 ## A Breif Into to OOP
