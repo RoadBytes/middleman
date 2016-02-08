@@ -1,10 +1,14 @@
 ---
-title: POODR Ch 3 summary
+title: POODR Ch 3 summary Part 1
 date: 2016-01-31 10:57 UTC
 tags: poodr, ch 3, managing dependencies, summary
 ---
 
 POODR ch 3 Managing Dependencies
+
+## Slides
+
+* [Presents the main topics of part 1 of chapter 3](https://docs.google.com/presentation/d/10ll2uezwovJtEOfQNUNATXdxcpcFHqLxSszkp33jAIw/edit?usp=sharing)
 
 ## Exercises
 
@@ -238,6 +242,4 @@ def defaults
   { chainring: 40, cog: 18 }
 end
 ~~~
-
-  * Isolate multiparameter Initialization
 
