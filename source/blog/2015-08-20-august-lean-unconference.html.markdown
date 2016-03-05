@@ -2,7 +2,6 @@
 title: August Lean UnConference
 date: 2015-08-20 15:08 UTC
 tags: lean, unconference, meetups
-published: false
 ---
 
 I've the opportunity to be in Silicon Valley for the months of August and September, and along with spending time with family, I'm going to meet up groups and meeting a lot of people in the tech community.  One meetup group that I found interesting is the Lean Circle which consist of people practicing *lean principles* to improve on a business model or product.

@@ -99,4 +99,9 @@ Wheel.new(26, 1.5, 52, 11).gear_inches
     * Ruby base changes less
     * Framework classes more likely change
   * Recognizing Concretions and abstractions
+    * abstract less likely to change
+    * avoid overly dependent classes
+    * find dependencies that matter
+    * depend on things that change less likely than you do.
 
+**Depend on things that don't change!**

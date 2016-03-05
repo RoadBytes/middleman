@@ -6,6 +6,10 @@ tags: poodr, ch 3, managing dependencies, summary
 
 POODR ch 3 Managing Dependencies
 
+## Video
+
+# [YouTubeVideo of CodeNewbie meeting](https://youtu.be/2Q3mzy8lmsc)
+
 ## Slides
 
 * [Presents the main topics of part 1 of chapter 3](https://docs.google.com/presentation/d/10ll2uezwovJtEOfQNUNATXdxcpcFHqLxSszkp33jAIw/edit?usp=sharing)

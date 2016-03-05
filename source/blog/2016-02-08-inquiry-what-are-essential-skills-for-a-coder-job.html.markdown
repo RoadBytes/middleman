@@ -16,11 +16,11 @@ This scene from *Good Will Hunting* encapsulates what I'm talking about.
 
 But, I've learned that:
 
-**Prgramming Skill is NOT something your born with, but something you can develop over time**
+**Prgramming Skill is NOT something you're born with, but something you can develop over time**
 
 This is partly reassuring because becoming a professional coder is now "possible" at least.  Still, now it just presents a "TON of Work" to get good enough to get a job.
 
-This video is one of the cutest things I've ever seen that illustrate how what seems impossible is merely the cumulation of a crap ton of work.
+This video is one of the cutest things I've ever seen that illustrates how what seems impossible is merely the cumulation of a crap ton of work.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HQu9z1Q5k8g" frameborder="0" allowfullscreen></iframe>
 
@@ -32,14 +32,14 @@ I'd like to make my effort as efficient as possible on the road to finding gainf
 
 Things I think may be an answer:
 
-* Focus on learning how to learn effiently
+* Focus on learning how to learn efficiently
 * Focus on one framework deeply (any framework at first will do) 
 * Focus on projects that you find meaningful
 * Focus on learning OOP really well
 
 Seasoned mentors out there, 
 
-**What do you think an essential skill as a new coder?**
+**What do you think an essential skill as a new coder to make the process as efficient as possible?**
 
 Thanks,
 

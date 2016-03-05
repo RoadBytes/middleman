@@ -3,7 +3,6 @@ title: Consistency is Key
 date: 2015-06-30 19:28 UTC
 feature_image: program21days.png
 tags: thoughts
-published: false
 ---
 
 #### tl:dr
