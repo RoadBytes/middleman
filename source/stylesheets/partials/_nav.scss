@@ -9,7 +9,7 @@
     li {
       display: inline-block;
       margin: 1em 1em 0 1em;
-      
+
       &:first-letter {
         text-decoration: underline;
       }
@@ -28,7 +28,7 @@
 .index-title {
   @include outer-container;
   padding-top: 15px;
-  
+
   aside {
     @include span-columns(1);
     min-width: 62px;
@@ -37,7 +37,7 @@
       border-radius: 15px;
     }
   }
-  
+
   .title-heading {
     @include span-columns(9);
     @include omega();
