@@ -3,6 +3,7 @@
 ###
 
 activate :blog do |blog|
+  blog.name   = "blog"
   blog.prefix = "blog"
   blog.layout = "blog_layout"
   blog.summary_separator = /READMORE/
@@ -15,6 +16,17 @@ activate :blog do |blog|
   blog.paginate = true
   blog.per_page = 10
   blog.page_link = "page/{num}"
+end
+
+activate :blog do |blog|
+  blog.name   = "exercises"
+  blog.prefix = "exercises"
+  blog.layout = "blog_layout"
+
+  # Enable pagination
+  blog.paginate = true
+  blog.per_page = 10
+  blog.page_link = "exercises/page/{num}"
 end
 
 ###

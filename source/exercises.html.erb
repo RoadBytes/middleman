@@ -1,6 +1,6 @@
 ---
 title: "Jason Data: Web Developer"
-blog: blog
+blog: exercises
 pageable: true
 ---
 
@@ -19,7 +19,11 @@ pageable: true
   </div>
 <% end %>
 
-<% page_articles.each_with_index do |article, i| %>
+
+<%= articles %>
+<% pp = blog_controller(:exercises).data.local_articles %>
+
+<% pp.each_with_index do |article, i| %>
   <section>
     <%- if article.data.feature_image %>
       <h1><%= link_to article.title, article, :class => "post_title" %></h1>
