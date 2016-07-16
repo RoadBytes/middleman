@@ -19,14 +19,14 @@ activate :blog do |blog|
 end
 
 activate :blog do |blog|
-  blog.name   = "exercises"
-  blog.prefix = "exercises"
+  blog.name   = "tech"
+  blog.prefix = "technical"
   blog.layout = "blog_layout"
 
   # Enable pagination
   blog.paginate = true
   blog.per_page = 10
-  blog.page_link = "exercises/page/{num}"
+  blog.page_link = "technical/page/{num}"
 end
 
 ###
