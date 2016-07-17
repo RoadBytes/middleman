@@ -23,6 +23,10 @@ activate :blog do |blog|
   blog.prefix = "technical"
   blog.layout = "blog_layout"
 
+  # Tags configurations
+  blog.taglink = "technical/tags/:tag.html"
+  blog.tag_template = "blog/tag.html"
+
   # Enable pagination
   blog.paginate = true
   blog.per_page = 10

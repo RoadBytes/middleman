@@ -16,21 +16,21 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$black: #000;
-$grey: #666;
-$olive: #60a020;
+$black:  #000;
+$grey:   #666;
+$olive:  #60a020;
 $orange: #c06000;
 
-$accentone: darken($grey, 5%);
-$accenttwo: $grey;
-$accentthree: #fff;
-$accentfour: $orange;
-$htags: $orange;
+$accentone:   darken($grey, 5%);
+$accenttwo:   $grey;
+$accentthree: white;
+$accentfour:  $orange;
+$htags:       $orange;
 
 // Font Colors
 $base-background-color: $black;
-$base-font-color: $olive;
-$action-color: $accentthree;
+$base-font-color:       $olive;
+$action-color:          $accentthree;
 
 // Border
 $base-border-color: $accentone;

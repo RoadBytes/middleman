@@ -1,7 +1,13 @@
-<h1>Articles tagged '<%= tagname %>'</h1>
-
 <% if articles %>
+
+  <h1><%= articles.first.blog_options.name.capitalize %> Posts tagged '<%= tagname %>'</h1>
+
   <% articles[0...12].each do |article| %>
     <li><a href="<%= article.url %>"><%= article.title %></a> <time><%= article.date.strftime('%b %e') %></time></li>
   <% end %>
+
+<% else %>
+
+  <h1>Posts tagged '<%= tagname %>'</h1>
+
 <% end %>
