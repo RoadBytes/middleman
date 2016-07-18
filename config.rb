@@ -3,29 +3,29 @@
 ###
 
 activate :blog do |blog|
-  blog.name   = "blog"
-  blog.prefix = "blog"
+  blog.name   = "personal"
+  blog.prefix = "personal"
   blog.layout = "blog_layout"
   blog.summary_separator = /READMORE/
 
   # Tags configurations
-  blog.taglink = "tags/:tag.html"
-  blog.tag_template = "blog/tag.html"
+  blog.taglink = "personal/tags/:tag.html"
+  blog.tag_template = "tag.html"
 
   # Enable pagination
   blog.paginate = true
   blog.per_page = 10
-  blog.page_link = "page/{num}"
+  blog.page_link = "personal/page/{num}"
 end
 
 activate :blog do |blog|
-  blog.name   = "tech"
+  blog.name   = "technical"
   blog.prefix = "technical"
   blog.layout = "blog_layout"
 
   # Tags configurations
   blog.taglink = "technical/tags/:tag.html"
-  blog.tag_template = "blog/tag.html"
+  blog.tag_template = "tag.html"
 
   # Enable pagination
   blog.paginate = true
