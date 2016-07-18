@@ -1,0 +1,33 @@
+.question {
+  &:after {
+    content: "(click to toggle answer)";
+    display: block;
+  }
+  &:before {
+    content: "Check for Understanding";
+    display: block;
+    text-decoration: underline;
+  }
+  &:active,
+  &:focus,
+  &:hover {
+    color: darken($action-color, 80%);
+  }
+
+  border-style: dotted;
+  color: $action-color;
+  font-size: 1.5em;
+  padding-left: 1em;
+  margin: 1em;
+  transition: color 0.1s linear;
+
+  .answer {
+    color: $base-font-color;
+    transition: color 0.1s linear;
+
+    p, pre {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
