@@ -18,20 +18,21 @@
   <body class="<%= page_classes %> main">
    <%= partial "partials/nav" %>
    <div class="content">
-     <%- if current_page.data.feature_image %>
-        <%= image_tag current_page.data.feature_image %>
-     <% end %>
-     <h1><%= current_page.data.title || "Blog Post" %></h1>
-     <p class="post-date"><%= current_page.date.strftime('<%e %b %Y>') %></p>
-     <p>
-       <% current_page.tags.each do |tag| %>
-         <%= link_to tag, tag_path(tag) %>
+     <div class="post">
+       <%- if current_page.data.feature_image %>
+          <%= image_tag current_page.data.feature_image, class: "post__feature-image" %>
        <% end %>
-     </p>
-     <hr/>
-     <%= yield %>
-     <%= partial "partials/analytics" %>
-     <%= partial "partials/footer" %>
+       <h1 class="post__title"><%= current_page.data.title || "Blog Post" %></h1>
+       <p class="post__date"><%= current_page.date.strftime('<%e %b %Y>') %></p>
+       <p>
+         <% current_page.tags.each do |tag| %>
+           <%= link_to tag, tag_path(tag), class: "post__tag" %>
+         <% end %>
+       </p>
+       <hr/> <%= yield %>
+       <%= partial "partials/footer" %>
+     </div>
    </div>
+   <%= partial "partials/analytics" %>
   </body>
 </html>

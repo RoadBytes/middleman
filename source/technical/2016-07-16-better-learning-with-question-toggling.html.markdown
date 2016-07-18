@@ -57,7 +57,7 @@ Having said all this, I think it would be cool to have Recall questions in blog 
 * Familiarity with jQuery, we can practice a little critical thinking
 * we have the following classes to access the specific elements
 
-~~~
+~~~ html
 
 <div class="question">
   Q: [insert question here]
@@ -69,7 +69,7 @@ Having said all this, I think it would be cool to have Recall questions in blog 
 
 With this set up, I can have the following javascript, but there will be a problem:
 
-~~~
+~~~ javascript
 
 $(document).ready(function() {
   // hide all answers on page
@@ -96,7 +96,7 @@ If was change line with the `toggle()` to this `$('.answer', this).toggle();`
 
 now only `.answer`'s in the `.question` that is clicked will toggle.
 
-~~~
+~~~ javascript
 
 $(document).ready(function() {
   // hide all answers on page
