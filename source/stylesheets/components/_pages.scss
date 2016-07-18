@@ -1,0 +1,68 @@
+// ul.article-list {
+//   @include outer-container;
+//   img {
+//     @include span-columns(4);
+//   }
+//   aside {
+//     @include span-columns(8);
+//     @include omega();
+//   }
+// }
+// 
+// section {
+//   @include outer-container;
+//   aside { @include span-columns(3); }
+//   article { @include span-columns(9); }
+// }
+// 
+// /* questions */
+// .question {
+//   &:after {
+//     content: "(click to toggle answer)";
+//     display: block;
+//   }
+//   &:before {
+//     content: "Check for Understanding";
+//     display: block;
+//     text-decoration: underline;
+//   }
+//   &:active,
+//   &:focus,
+//   &:hover {
+//     color: darken($action-color, 80%);
+//   }
+// 
+//   border-style: dotted;
+//   color: $action-color;
+//   font-size: 1.5em;
+//   padding-left: 1em;
+//   margin: 1em;
+//   transition: color 0.1s linear;
+// 
+//   .answer {
+//     color: $base-font-color;
+//     transition: color 0.1s linear;
+// 
+//     p, pre {
+//       margin: 0;
+//       padding: 0;
+//     }
+//   }
+// }
+// 
+// /* contact page */
+// 
+// table {
+//   @include outer-container;
+// 
+//   tr.contact-info {
+//     @include span-columns(12);
+// 
+//     td {
+//       border-bottom: none;
+//     }
+// 
+//     td.name-col { @include span-columns(2); }
+//     td.link-col { @include span-columns(10); }
+//   }
+// }
