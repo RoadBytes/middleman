@@ -4,4 +4,19 @@ blog: personal
 pageable: true
 ---
 
-<%= partial "partials/index_blogs" %>
+<%= partial "partials/index_blogs",
+  locals: {
+    paginate: paginate,
+    page_number: page_number,
+    num_pages: num_pages,
+    per_page: per_page,
+    page_start: page_start,
+    page_end: page_end,
+    next_page: next_page,
+    prev_page: prev_page,
+    page_articles: page_articles,
+    articles: articles,
+    blog_controller: blog_controller
+  }
+%>
+
