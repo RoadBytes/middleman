@@ -28,7 +28,6 @@ $accentfour:  $orange;
 $htags:       $orange;
 
 // Font Colors
-$base-background-color: $black;
 $base-font-color:       $olive;
 $action-color:          $accentthree;
 
@@ -37,7 +36,7 @@ $base-border-color: $accentone;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: #000;
+$base-background-color: $black;
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Forms

@@ -1,3 +1,25 @@
 .listed-post {
-  
+  .listed-post__title {
+    @include margin(0.5em null 0 null);
+    @include padding(0);
+    font-size: 2em; 
+    color: $htags;
+
+    &:before {
+      content: "* ";
+      color: $accentfour;
+    }
+  }
+
+  .listed-post__date {
+    @include margin(0);
+    @include padding(0);
+    color: darken( $base-font-color, 15% );
+    font-size: 1em;
+    font-style: italic;
+  }
+
+  .listed-post__summary {
+  }
 }
+

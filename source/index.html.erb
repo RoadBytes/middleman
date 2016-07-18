@@ -20,10 +20,10 @@ pageable: true
 <% end %>
 
 <% page_articles.each_with_index do |article, i| %>
-  <section>
+  <section class="listed-post">
     <%- if article.data.feature_image %>
-      <h1><%= link_to article.title, article, :class => "post_title" %></h1>
-      <p class="post-date"><%= article.date.strftime('<%e %b %Y>') %></p>
+      <h1 class="listed-post__title"><%= link_to article.title, article %></h1>
+      <p class="listed-post__date"><%= article.date.strftime('<%e %b %Y>') %></p>
       <aside>
         <%- link_to article do %>
           <%= image_tag article.data.feature_image, resize_to: '200x200', class: 'thumbnail' %>
@@ -33,9 +33,9 @@ pageable: true
         <%= article.data.summary %>
       </article>
     <% else %>
-      <h1><%= link_to article.title, article, :class => "post_title" %></h1>
-      <p class="post-date"><%= article.date.strftime('<%e %b %Y>') %></p>
-      <%= article.summary %>
+      <h1 class="listed-post__title"><%= link_to article.title, article %></h1>
+      <p class="listed-post__date"><%= article.date.strftime('<%e %b %Y>') %></p>
+      <div class="listed-post__summary"><%= article.summary %></div>
     <% end %>
   </section>
 <% end %>
