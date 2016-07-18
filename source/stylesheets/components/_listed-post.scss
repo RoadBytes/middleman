@@ -1,4 +1,5 @@
 .listed-post {
+  @include span-columns(12);
   .listed-post__title {
     @include margin(0.5em null 0 null);
     @include padding(0);
@@ -20,6 +21,13 @@
   }
 
   .listed-post__summary {
+  }
+
+  .listed-post--with-image__image {
+    @include span-columns(2);
+  }
+  .listed-post--with-image__summary {
+    @include span-columns(10);
   }
 }
 

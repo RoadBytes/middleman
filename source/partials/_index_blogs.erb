@@ -1,0 +1,48 @@
+<% if paginate && num_pages > 1 %>
+  <div class="toppages">
+    <p class="plist">
+      <% if next_page %>
+        <%= link_to 'Next page', next_page %>
+      <% end %>
+
+      <% if prev_page %>
+        <%= link_to 'Previous page', prev_page %>
+      <% end %>
+      Page <%= page_number %> of <%= num_pages %>
+    </p>
+  </div>
+<% end %>
+
+<% page_articles.each_with_index do |article, i| %>
+
+  <div class="listed-post">
+    <h1 class="listed-post__title"><%= link_to article.title, article %></h1>
+    <p class="listed-post__date"><%= article.date.strftime('<%e %b %Y>') %></p>
+
+    <%- if article.data.feature_image %>
+      <%- link_to article, class: 'listed-post--with-image__image' do %>
+        <%= image_tag article.data.feature_image, resize_to: '200x200', class: 'thumbnail' %>
+      <% end %>
+        <div class="listed-post--with-image__summary">
+          <%= article.data.summary %>
+        </div>
+    <% else %>
+      <div class="listed-post__summary"><%= article.summary %></div>
+    <% end %>
+  </div>
+<% end %>
+
+<% if paginate && num_pages > 1 %>
+  <div class="bottompages">
+    <p class="plist">
+      <% if next_page %>
+        <%= link_to 'Next page', next_page %>
+      <% end %>
+
+      <% if prev_page %>
+        <%= link_to 'Previous page', prev_page %>
+      <% end %>
+      Page <%= page_number %> of <%= num_pages %>
+    </p>
+  </div>
+<% end %>
