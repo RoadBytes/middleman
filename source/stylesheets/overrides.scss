@@ -23,7 +23,7 @@ h2 {
 h3 {
   font-size: 1.17em; 
   color: $htags;
-  
+
   &:before {
     content: "*** ";
     color: $accentfour;
@@ -33,7 +33,7 @@ h3 {
 h4 {
   font-size: 1.12em; 
   color: $htags;
-  
+
   &:before {
     content: "**** ";
     color: $accentfour;
@@ -43,7 +43,7 @@ h4 {
 h5 {
   font-size: .83em; 
   color: $htags;
-  
+
   &:before {
     content: "***** ";
     color: $accentfour;
@@ -53,7 +53,7 @@ h5 {
 h6 {
   font-size: .75em; 
   color: $htags;
-  
+
   &:before {
     content: "****** ";
     color: $accentfour;
@@ -85,6 +85,16 @@ blockquote {
   }
 }
 
+img {
+  display: block;
+  margin: auto;
+}
+
+iframe {
+  display: block;
+  margin: auto;
+}
+
 /* code blocks */
 code {
   &:before {
@@ -94,7 +104,7 @@ code {
   &:after {
     content: "\00a0" ;
   }
-  
+
   background-color: $accentone;
 }
 
