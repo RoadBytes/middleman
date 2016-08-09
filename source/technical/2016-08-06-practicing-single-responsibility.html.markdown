@@ -4,7 +4,7 @@ date: 2016-08-06 17:23 UTC
 tags: practice, single responsibility, intermediate
 ---
 
-Since I've been applying for jobs, I came across a ToyRobot challenge and it's helping me dig a bit deeper with OOP Design.  You can find details in the `README` of my [repo](https://github.com/RoadBytes/ToyRobot)
+Since I've been applying for jobs, I came across a ToyRobot challenge, through [Ash Petit](https://www.linkedin.com/in/aspettit), and it's helping me dig a bit deeper with OOP Design.  You can find details in the `README` of my [repo](https://github.com/RoadBytes/ToyRobot)
 
 So other people can benefit from my experience, I thought I'd present a case where you can take my `Robot` class and extract out a `Table` class.
 
