@@ -194,5 +194,5 @@ end
 ### Next steps and How'd it go for you?
 
 Anyway, I'll continue to chop up this class and try different techniques.  I
-might seeing if a robot can not know about its direction.  If
+might see if a robot can not know about its direction.  If
 you tried it yourself, leave a comment link to your repo.
