@@ -77,11 +77,16 @@ configure :development do
 end
 
 # Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
+helpers do
+  def question_toggle(question, answer)
+    "<div class='question'>" +
+    "  Q: #{question}" +
+    "  <div class='answer'>" +
+    "    A: #{answer}" +
+    "  </div>" +
+    "</div>"
+  end
+end
 
 activate :syntax do |syn|
   syn.inline_theme = nil

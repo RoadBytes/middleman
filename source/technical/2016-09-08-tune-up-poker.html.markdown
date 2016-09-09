@@ -1,15 +1,15 @@
 ---
-title: 'Tune Up: Poker'
+title: 'TuneUp: Poker'
 date: 2016-09-08 19:26 UTC
-tags: tune up
+tags: tuneup
 ---
 
 Hello World!  This is the first of hopefully many coding challenges with
 RoadBytes.  A general description of tunes ups can be found here:
 
-[RoadBytes:Tune Ups Explained](http://roadbytes.me/personal/2016/09/08/tune_up_explained.html)
+[RoadBytes:TuneUps Explained](http://roadbytes.me/personal/2016/09/08/tune_up_explained.html)
 
-If you understand how to work with Tune Ups,
+If you understand how to work with TuneUps,
 [here is a link to the repo for this challenge](https://github.com/RoadBytes/TuneUpPoker/tree/tune_up_poker_start)
 
 In [Launch School](https://launchschool.com), I was given a challenge to create
