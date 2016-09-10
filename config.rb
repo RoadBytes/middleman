@@ -78,13 +78,19 @@ end
 
 # Methods defined in the helpers block are available in templates
 helpers do
-  def question_toggle(question, answer)
+  def question_toggle(question, answer, textbox = false)
+    textarea_html = "<textarea rows='4' style='color: green' " +
+                    "placeholder='write your answer before checking mine'>" +
+                    "</textarea>"
+    textarea_result = textbox ? textarea_html : ""
+
     "<div class='question'>" +
-    "  Q: #{question}" +
+    "  Q: #{question}"       +
     "  <div class='answer'>" +
-    "    A: #{answer}" +
-    "  </div>" +
-    "</div>"
+    "    A: #{answer}"       +
+    "  </div>"               +
+    "</div>"                 +
+    textarea_result
   end
 end
 

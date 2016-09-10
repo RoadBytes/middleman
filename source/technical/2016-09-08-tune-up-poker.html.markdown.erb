@@ -69,20 +69,9 @@ method `Poker#best_hand` that didn't really fit in the Poker class.
   end
 ~~~
 
-## Question
-
-Take a look at the Poker file and the method above and think of some reasons why
-it might be too complex
-
-## Answer (No peeking until you answered the question yourself)
-
-Just my opinion
-
-* Poker should deal with `Hand` and not necessarily `Hand#max_card_value`
-* There are levels of indentation that may be avoided
-* Working a collection of `Hand`s may be best dealt with in the `Hand` class
-
-What do you think?  Did you come up with other ways of thinking?
+<% q_one = "Take a look at the Poker file and the method above and think of some reasons why it might be too complex" %>
+<% a_one = simple_format "Just my opinion\n\n * Poker should deal with `Hand` and not necessarily `Hand#max_card_value`\n * There are levels of indentation that may be avoided\n * Working a collection of `Hand`s may be best dealt with in the `Hand` class\n\n What do you think?  Did you come up with other ways of thinking?\n" %>
+<%= question_toggle(q_one, a_one, true) %>
 
 # Your mission, should you choose to accept it,
 

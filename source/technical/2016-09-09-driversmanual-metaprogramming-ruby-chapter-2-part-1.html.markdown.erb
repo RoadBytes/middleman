@@ -1,0 +1,214 @@
+---
+title: "DriversManual: Metaprogramming Ruby Chapter 2 Part 1"
+date: 2016-09-09 22:42 UTC
+tags: driversmanual, metaprogramming ruby
+---
+
+# The Object Model
+
+---
+
+## Contents
+
+* `class`
+* Problem with Open Classes
+* What's an object?
+* Classes
+* Modules
+* Classes as Objects
+* Constants
+* Structure like a File System
+* Objects and Classes Wrap-Up
+
+---
+
+# `class`
+
+* Open Classes
+* Editing Standard Objects
+
+# Open Classes
+
+* `class` as in something like `class Foo` is more like a scope method since:
+  * it instantiates `Foo` if it doesn't exist and opens `Foo` otherwise
+
+~~~ ruby
+
+class Foo
+  def one_method
+    puts 'one'
+  end
+end
+
+class Foo
+  def two_method
+    puts 'two'
+  end
+end
+
+foo-instance = Foo.new
+
+foo-instance.one_method # => 'one'
+foo-instance.two_method # => 'two'
+
+~~~
+
+# Editing Standard Library Objects
+
+* classes can also be changed on the fly
+
+~~~ ruby
+
+class String
+  def word_characters
+    gsub(/[^\w]+/, '')
+  end
+end
+
+"asdf1234##".word_characters # => 'asdf1234'
+~~~
+
+
+# Problem with Open Classes
+
+* Do not overwrite existing methods since you might end up with unintended side effects
+* known as "monkey patching"
+* ex: overwriting `Array#replace`
+
+~~~ ruby
+
+class Array
+  def replace(...)
+  end
+end
+~~~
+
+# What's an object?
+
+`obj = MyObject.new`
+
+* instance `obj` contain instance variables `@variable`, and ref to class
+  * variables not connected to Class
+* methods
+  * a list can be provided through `MyClass#methods`
+  * stored in the class
+
+![figure one: object instance variables and method locations](figure-1-object-model.png)
+
+# Classes
+
+* classes are also objects of `Class`!
+  * allows for `Class.new` call
+  * Class.instance_methods(false) => [:allocate, :new, :superclass]
+
+# Modules
+
+* very similar to class but with out inheritance
+* all classes are modules since they are instances of `Module`
+* Picking between `Class` and `Module` is mainly for clarity
+
+# Classes as Objects
+
+* whiteboard the relationships between
+  * class MyClass; end
+  * obj1 = MyClass.new
+  * obj2 = MyClass.new
+  * Class
+  * Module
+  * Object
+
+# Classes as Objects (diagram)
+
+![figure two: classes are objects](figure-2-class-objects.png)
+
+# Constants
+
+* start with a capital letter
+* can still be changed
+
+# Structure like a File System
+
+* Classes and Modules are like directories
+* constants are like files
+
+~~~
+
+module M
+  class C
+    X = 'a constant'
+  end
+  C::X # => "a constant"
+end
+M::C::X # => "a constant"
+~~~
+
+* `Module#constants` returns constants in that scope, like `ls`
+* `Module#nesting` returns path's
+* Namespacing is creating a Module to contain constants
+
+# Objects and Classes Wrap-Up
+
+* What's an object?
+  * instance vars, plus
+  * reference to its class
+  * instance methods live in the class
+
+* What's a class
+  * an object, instance of `Class`, plus
+  * instance methods, and
+  * link to superclass
+  * `Class` is a subclass of `Module`, so a class is also a module
+  * class name is a constant reference to the class
+
+---
+
+# Quiz Questions
+
+<% question = "What is meant by 'Open' classes with ruby?" %>
+<% answer   = 'Classes can be changed on the fly' %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'What is Monkey Patching?' %>
+<% answer   = 'Changing Standard Class methods' %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'What parts of an instance is highlighted?' %>
+<% answer   = '1) instance variables, and 2) references to classes [that contain instance methods]' %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'What is the superclass of `Class`?' %>
+<% answer   = 'Module' %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'What are highlighted differences between Module and Class?' %>
+<% answer   = "Class is an instance of Module.  Classes have inheritance and instantiation Modules don't" %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'Compare instantiation vs child' %>
+<% answer   = 'Classes are children of their superclasses and instances of their class' %>
+<% answer   = answer + ' example: Class is an instance of Class and child of Module' %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'Class names were simply ________ in the text' %>
+<% answer   = 'constants' %>
+<%= question_toggle question, answer, true %>
+
+<% question = "How would you find a 'root' level constant 'Y'?" %>
+<% answer   = "`::Y` the '::' acts like '~'" %>
+<%= question_toggle question, answer, true %>
+
+<% question = "With a File System metaphor, what is == to 'ls'?" %>
+<% answer   = "the `Module#constants` method" %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'What is a Namespace?' %>
+<% answer   = 'a Module that exists to only be a container of constants' %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'What is an object?' %>
+<% answer   = 'instance vars + reference to its class' %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'What is a class?' %>
+<% answer   = 'instance of `Class` + instance methods + link to superclass' %>
+<%= question_toggle question, answer, true %>

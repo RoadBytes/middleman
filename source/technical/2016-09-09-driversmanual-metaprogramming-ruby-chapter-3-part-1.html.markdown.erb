@@ -1,0 +1,100 @@
+---
+title: "DriversManual: Metaprogramming Ruby Chapter 3 Part 1"
+date: 2016-09-09 23:19 UTC
+tags: driversmanual, metaprogramming ruby
+---
+
+# Ch 3: Methods
+
+---
+
+# Static vs Dynamic
+
+* Static:
+  * compiler check method calls beforehand to verify existance.
+* Dynamic:
+  * does NOT check for method calls until it's executed.
+
+# Removing Duplication
+
+* How would you reduce this?
+
+# Boom!
+
+~~~ ruby
+
+class Computer
+  def initialize(computer_id, data_source)
+    @id = computer_id
+    @data_source = data_source
+  end
+
+  def mouse
+    info   = @data_source.get_mouse_info(@id)
+    price  = @data_source.get_mouse_price(@id)
+    result = "Mouse: #{info} ($#{price})"
+    return "* #{result}" if price >= 100
+    result
+  end
+
+  def cpu
+    info   = @data_source.get_cpu_info(@id)
+    price  = @data_source.get_cpu_price(@id)
+    result = "Cpu: #{info} ($#{price})"
+    return "* #{result}" if price >= 100
+    result
+  end
+
+  def keyboard
+    info   = @data_source.get_keyboard_info(@id)
+    price  = @data_source.get_keyboard_price(@id)
+    result = "Keyboard: #{info} ($#{price})"
+    return "* #{result}" if price >= 100
+    result
+  end
+
+  # ...
+end
+~~~
+
+# Two Ways to reduce duplication
+
+1. Dynamic Methods and
+2. `method_missing`
+
+# 1) Dynamic Methods and Dynamic Dispatch
+
+# Dynamic Dispatch
+
+* `send` highlight that a method is like a message to an object
+  * dotnotation: `obj.my_method(arg)`
+  * send:        `obj.send(:my_method, arg)`
+* having the method call as an argument, allows for 'deciding' on the method to
+  execute for the very last minute
+
+> **Dynamic Dispatch**: Where you learn how to call and define methods 
+> dynamically, and you remove the duplicated code.
+
+~~~ ruby
+
+def cpu
+  info = @data_source.get_cpu_info(@id)
+  price = @data_source.get_cpu_price(@id)
+  result = "Cpu: #{info} ($#{price})"
+  return "\* #{result}" if price >= 100
+  result
+end
+
+define_method :my_method do |args|
+  info_method  = :get_#{my_method}_info
+  price_method = :get_#{my_method}_price
+
+  info   = @data_source.send info_method, @id
+  price  = @data_source.send price_method, @id
+  result = "Cpu: #{info} ($#{price})"
+  return "\* #{result}" if price >= 100
+  result
+end
+~~~
+
+# 2) `method_missing`
