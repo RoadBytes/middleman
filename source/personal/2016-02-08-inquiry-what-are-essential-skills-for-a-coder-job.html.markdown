@@ -16,7 +16,7 @@ This scene from *Good Will Hunting* encapsulates what I'm talking about.
 
 But, I've learned that:
 
-**Prgramming Skill is NOT something you're born with, but something you can develop over time**
+**Programming Skill is NOT something you're born with, but something you can develop over time**
 
 This is partly reassuring because becoming a professional coder is now "possible" at least.  Still, now it just presents a "TON of Work" to get good enough to get a job.
 

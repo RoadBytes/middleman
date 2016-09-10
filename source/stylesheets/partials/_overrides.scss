@@ -1,3 +1,10 @@
+$orange: #c06000;
+$htags: $orange;
+
+a {
+  text-decoration: underline;
+}
+
 h1 {
   font-size: 2em; 
   margin-top: 0.5em;
@@ -23,7 +30,7 @@ h2 {
 h3 {
   font-size: 1.17em; 
   color: $htags;
-  
+
   &:before {
     content: "*** ";
     color: $accentfour;
@@ -33,7 +40,7 @@ h3 {
 h4 {
   font-size: 1.12em; 
   color: $htags;
-  
+
   &:before {
     content: "**** ";
     color: $accentfour;
@@ -43,7 +50,7 @@ h4 {
 h5 {
   font-size: .83em; 
   color: $htags;
-  
+
   &:before {
     content: "***** ";
     color: $accentfour;
@@ -53,11 +60,18 @@ h5 {
 h6 {
   font-size: .75em; 
   color: $htags;
-  
+
   &:before {
     content: "****** ";
     color: $accentfour;
   }
+}
+
+strong {
+  color:       lighten($base-font-color, 10);
+  font:        serif;
+  font-size:   1.2em;
+  font-weight: 900;
 }
 
 ul li {
@@ -70,34 +84,6 @@ ol li {
   margin-left: 2em;
 }
 
-ul.article-list > li {
-  list-style: none;
-}
-
-p.post-date {
-  color: darken( $base-font-color, 15% );
-  font-size: 1em;
-  font-style: italic;
-  margin: 0;
-  padding: 0;
-}
-
-.main {
-  background-color: $base-background-color;
-}
-
-.content {
-  @include outer-container;
-}
-
-.video {
-  @include outer-container;
-  iframe {
-    @include span-columns(8);
-    @include shift(2);
-  }
-}
-
 blockquote {
   border-left-style: solid;
   border-left-color: $accentone;
@@ -106,8 +92,26 @@ blockquote {
   }
 }
 
+img {
+  display: block;
+  margin: auto;
+}
+
+iframe {
+  display: block;
+  margin: auto;
+}
+
 /* code blocks */
 code {
+  &:before {
+    content: "\00a0" ;
+  }
+
+  &:after {
+    content: "\00a0" ;
+  }
+
   background-color: $accentone;
 }
 

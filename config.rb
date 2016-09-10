@@ -3,18 +3,34 @@
 ###
 
 activate :blog do |blog|
-  blog.prefix = "blog"
+  blog.name   = "personal"
+  blog.prefix = "personal"
   blog.layout = "blog_layout"
   blog.summary_separator = /READMORE/
 
   # Tags configurations
-  blog.taglink = "tags/:tag.html"
-  blog.tag_template = "blog/tag.html"
+  blog.taglink = "personal/tags/:tag.html"
+  blog.tag_template = "tag.html"
 
   # Enable pagination
   blog.paginate = true
   blog.per_page = 10
-  blog.page_link = "page/{num}"
+  blog.page_link = "personal/page/{num}"
+end
+
+activate :blog do |blog|
+  blog.name   = "technical"
+  blog.prefix = "technical"
+  blog.layout = "blog_layout"
+
+  # Tags configurations
+  blog.taglink = "technical/tags/:tag.html"
+  blog.tag_template = "tag.html"
+
+  # Enable pagination
+  blog.paginate = true
+  blog.per_page = 10
+  blog.page_link = "technical/page/{num}"
 end
 
 ###
@@ -61,11 +77,22 @@ configure :development do
 end
 
 # Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
+helpers do
+  def question_toggle(question, answer, textbox = false)
+    textarea_html = "<textarea rows='4' style='color: green' " +
+                    "placeholder='write your answer before checking mine'>" +
+                    "</textarea>"
+    textarea_result = textbox ? textarea_html : ""
+
+    "<div class='question'>" +
+    "  Q: #{question}"       +
+    "  <div class='answer'>" +
+    "    A: #{answer}"       +
+    "  </div>"               +
+    "</div>"                 +
+    textarea_result
+  end
+end
 
 activate :syntax do |syn|
   syn.inline_theme = nil

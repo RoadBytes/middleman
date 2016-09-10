@@ -1,0 +1,55 @@
+---
+title: "DriversManual: Metaprogramming Ruby Chapter 1"
+date: 2016-09-09 18:08 UTC
+tags: driversmanual, metaprogramming ruby
+---
+
+# Ch 1: The M Word
+
+# Ghost Towns and Marketplaces
+
+* In contrast to Ruby, C++ have variables and methods visible in source code,
+  BUT in accessible during run time.
+  * ie, Ruby allows for **introspection**, code that can ask about itself
+    `my_object.class # => Greeting`
+
+# Bob's First Attempt
+
+* An example of a program that writes to a SQL database is given
+* Unfortunately, Bob's attempt has a lot of duplication
+  * there's a `movies` table with a `title` column AND
+  * a `Movie` class with a "title" string constant
+* Metaprogramming to save the day
+  * ALL of Bob's code is replaced with
+
+~~~
+class Movie < ActiveRecord::Base
+end
+~~~
+
+* Yes you read that correctly.
+* How does it work?
+  * Since the class is `Movie` ActiveRecord looks for a table called `movies`
+  * `Movie#title` and `Movie#title=` are inferred from the schema
+
+# Conclusion
+
+* Metaprogramming is important and ubiquitous to the Ruby style
+
+# Quiz Questions
+
+<% question = 'How is Metaprogramming defined in this chapter?' %>
+<% answer   = 'Metaprogramming is code that writes code' %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'What is introspection?' %>
+<% answer   = 'The ability for code to "know" about itself' %>
+<%= question_toggle question, answer, true %>
+
+<% question = 'What is the more formal definition of Metaprogramming given later?' %>
+<% answer   = 'Metaprogramming is writing code that manipulates language constructs at runtime.' %>
+<%= question_toggle question, answer, true %>
+
+<% question = "What's the difference between *static* and *dynamic* Metaprogramming?" %>
+<% answer = "Both involve code that writes code, but Dynamic code writes to its own language while static metaprogramming writes to another language." %>
+<%= question_toggle question, answer, true %>

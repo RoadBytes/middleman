@@ -1,7 +1,3 @@
----
-title: "Jason Data: Web Developer"
-pageable: true
----
 
 <% if paginate && num_pages > 1 %>
   <div class="toppages">
@@ -19,24 +15,22 @@ pageable: true
 <% end %>
 
 <% page_articles.each_with_index do |article, i| %>
-  <section>
+
+  <div class="listed-post">
+    <h1 class="listed-post__title"><%= link_to article.title, article %></h1>
+    <p class="listed-post__date"><%= article.date.strftime('<%e %b %Y>') %></p>
+
     <%- if article.data.feature_image %>
-      <h1><%= link_to article.title, article, :class => "post_title" %></h1>
-      <p class="post-date"><%= article.date.strftime('<%e %b %Y>') %></p>
-      <aside>
-        <%- link_to article do %>
-          <%= image_tag article.data.feature_image, resize_to: '200x200', class: 'thumbnail' %>
-        <% end %>
-      </aside>
-      <article>
-        <%= article.data.summary %>
-      </article>
+      <%- link_to article, class: 'listed-post--with-image__image' do %>
+        <%= image_tag article.data.feature_image, resize_to: '200x200', class: 'thumbnail' %>
+      <% end %>
+        <div class="listed-post--with-image__summary">
+          <%= article.data.summary %>
+        </div>
     <% else %>
-      <h1><%= link_to article.title, article, :class => "post_title" %></h1>
-      <p class="post-date"><%= article.date.strftime('<%e %b %Y>') %></p>
-      <%= article.summary %>
+      <div class="listed-post__summary"><%= article.summary %></div>
     <% end %>
-  </section>
+  </div>
 <% end %>
 
 <% if paginate && num_pages > 1 %>
