@@ -29,7 +29,9 @@ Here is my first [TuneUp Post](http://roadbytes.me/technical/2016/09/08/tune-up-
 
 ## Construction Zone
 
-![http://img.youtube.com/vi/zFGVtx6N9Jw/0.jpg](https://www.youtube.com/watch?v=zFGVtx6N9Jw)
+<a href='https://www.youtube.com/watch?v=zFGVtx6N9Jw'>
+  ![http://img.youtube.com/vi/zFGVtx6N9Jw/0.jpg](http://img.youtube.com/vi/zFGVtx6N9Jw/0.jpg)
+</a>
 
 These are videos of various study places around the world I'm visiting.
 
