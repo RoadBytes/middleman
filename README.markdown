@@ -29,7 +29,7 @@ Here is my first [TuneUp Post](http://roadbytes.me/technical/2016/09/08/tune-up-
 
 ## Construction Zone
 
-<a href='https://www.youtube.com/watch?v=zFGVtx6N9Jw'>
+<a href='https://www.youtube.com/watch?v=zFGVtx6N9Jw' target="_blank">
   ![http://img.youtube.com/vi/zFGVtx6N9Jw/0.jpg](http://img.youtube.com/vi/zFGVtx6N9Jw/0.jpg)
 </a>
 
