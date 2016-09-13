@@ -1,7 +1,7 @@
 ---
 title: 'TuneUp: Poker'
-date: 2016-09-08 19:26 UTC
-tags: tuneup
+date: 2016-09-08 126 UTC
+tags: tuneup, poker
 ---
 
 Hello World!  This is the first of hopefully many coding challenges with
@@ -12,17 +12,19 @@ RoadBytes.  A general description of tunes ups can be found here:
 If you understand how to work with TuneUps,
 [here is a link to the repo for this challenge](https://github.com/RoadBytes/TuneUpPoker/tree/tune_up_poker_start)
 
+---
+
 In [Launch School](https://launchschool.com), I was given a challenge to create
 a poker hand application that would take in a series of poker hands and return
 the highest hands.
 
 # Specs
 
-* Input
+## Input
 
-Hands would be in the form of an array with to character strings. ie.
+Hands would be in the form of an array with two character strings. ie.
 
-~~~
+~~~ ruby
 
 high_of_jack  = %w(4S 5S 7H 8D JC)
 high_of_queen = %w(2S 4H 6S TD QH)
@@ -30,15 +32,16 @@ high_of_queen = %w(2S 4H 6S TD QH)
 
 There will just be one argument consisting of an array of hands.
 
-~~~
+~~~ ruby
 
 Poker.new([high_of_8, high_of_queen])
 ~~~
 
-* Output
+## Output
 
-Simply consists of an array with the highest hands from the input.  There can be
-ties.  See more details on Poker rules on
+* Simply consists of an array with the highest hands from the input.  There can be
+ties.
+  * See more details on Poker rules on
 [wiki](https://en.wikipedia.org/wiki/List_of_poker_hand_categories)
 
 ~~~
@@ -47,34 +50,52 @@ ties.  See more details on Poker rules on
 ~~~
 
 * See the `test.rb` file from the repo for more information.
+  * <%= link_to 'https://github.com/RoadBytes/TuneUpPoker/blob/tune_up_poker_start/test.rb',
+      'https://github.com/RoadBytes/TuneUpPoker/blob/tune_up_poker_start/test.rb' %>
 
 # Challenge
 
 If you look at the `poker.rb` file, when I implemented this challenge, I made a
 method `Poker#best_hand` that didn't really fit in the Poker class.
 
-~~~
+~~~ ruby
 
-  def best_hand
-    best_hands = best_ranked_hands
-    highest_card_value = 0
-    best_hands.each do |hand|
-      high_hand_value = hand.max_card_value
-      if high_hand_value > highest_card_value
-        highest_card_value = high_hand_value
-      end
+def best_hand
+  best_hands = best_ranked_hands
+  highest_card_value = 0
+  best_hands.each do |hand|
+    high_hand_value = hand.max_card_value
+    if high_hand_value > highest_card_value
+      highest_card_value = high_hand_value
     end
-    best_hands.select { |hand| hand.max_card_value == highest_card_value }
-              .map(&:input)
   end
+  best_hands.select { |hand| hand.max_card_value == highest_card_value }
+            .map(&:input)
+end
 ~~~
 
-<% q_one = "Take a look at the Poker file and the method above and think of some reasons why it might be too complex" %>
+<% q_one = "Take a look at the Poker#best_hand method above and think of some reasons why it might be too complex" %>
 <% a_one = simple_format "Just my opinion\n\n * Poker should deal with `Hand` and not necessarily `Hand#max_card_value`\n * There are levels of indentation that may be avoided\n * Working a collection of `Hand`s may be best dealt with in the `Hand` class\n\n What do you think?  Did you come up with other ways of thinking?\n" %>
-<%= question_toggle(q_one, a_one, true) %>
+<%= question_toggle(q_one, a_one) %>
 
 # Your mission, should you choose to accept it,
 
 * refactor `Poker#best_hand` in a way that would be more sensible.
 
-After you finish, you can compare your work with my answer, :)
+* Remember, **RoadBytes TuneUps** are code challenges that are meant to promote
+  1. Working with git
+  2. Code Literacy
+  3. Refactoring
+  4. Collaborating
+
+---
+
+After you finish, you can compare your experience with mine, :)
+
+* **Code Literacy**: <%= link_to 'My Reading of the code base', '/technical/2016/09/13/tuneup-poker-reading-the-code-base.html' %>
+* **Refactoring**: <%= link_to 'see my thoughts on the refactored code base', '/technical/2016/09/13/tuneup-poker-refactoring.html' %>
+
+---
+
+<br>
+

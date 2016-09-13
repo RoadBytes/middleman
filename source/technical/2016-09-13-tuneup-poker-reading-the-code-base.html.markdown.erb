@@ -1,0 +1,105 @@
+---
+title: 'TuneUp: Poker- Reading the code base'
+date: 2016-09-13 14:41 UTC
+tags: tuneup, poker
+---
+
+This is a review of the Poker code base for **TuneUp: Poker**.  The main post
+for this challenge can be found <%= link_to 'here', '/technical/2016/09/08/tune-up-poker.html' %>
+
+For an explanation of **TuneUps** you can find it <%= link_to 'here', '/personal/2016/09/08/tune_up_explained.html' %>
+
+---
+
+# Noticing the classes
+
+Luckily, this is a small file and the first thing I notice is there are a few
+classes:
+
+* Poker
+  * Seems to deal with working with a collection of hands
+  * This includes the method `Poker#best_hand` that we need to refactor
+* Hand
+  * Is really big
+  * `ranking` returns an array for comparing hands
+  * has knowledge of Poker Categories: ie. Full House, Flush, etc.
+* Card
+  * `value` is a numerical value of the card (J is 11, Q is 12...)
+  * `character` and `suit` are simply the single char strings from
+    initialization
+
+# Breaking down `Poker#best_hand`
+
+~~~ ruby
+# Looking at the method
+
+def best_hand
+  # TODO: Your mission, should you choose to accept it,
+  # refactor `Poker#best_hand` in a way that would be more sensible.
+  best_hands = best_ranked_hands
+  highest_card_value = 0
+  best_hands.each do |hand|
+    high_hand_value = hand.max_card_value
+    if high_hand_value > highest_card_value
+      highest_card_value = high_hand_value
+    end
+  end
+  best_hands.select { |hand| hand.max_card_value == highest_card_value }
+            .map(&:input)
+end
+~~~
+
+* `best_hands = best_ranked_hands`: it looks like `best_ranked_hands` initially
+  narrows down the input to the best ranked hands, depending on it's category.
+* `high_hand_value = hand.max_card_value`: pulls the max card value from the
+  best ranked hands.
+* `best_hands.select { |hand| hand.max_card_value == highest_card_value }`:
+  selects the best hands with the given max card value.
+
+# Starting a refactor proposal
+
+## Should sorting be part of `Poker`?
+
+* One way that I attacked the refactor was to put the `sort`ing of hands as part
+  of the `Hand` class.
+* with Ruby, we can define `def <=>(other_hand)` and be able to `Hand#sort` a
+  collection of hands
+
+## Ruby sorting arrays
+
+* Ruby sorts arrays by comparing values from left to right
+  * ie. `[1, 2] <=> [1, 3] #=> -1`
+    * so `[1, 3]` is 'bigger' than `[1, 2]` since 3 > 2
+  * ie. `[1, 3] <=> [1, 3] #=> 0`
+    * so `[1, 3]` is equal to `[1, 3]` since they have the same values
+  * ie. `[2] <=> [1, 3] #=> 1`
+    * so `[2]` is 'bigger' than `[1, 3]` since 2 > 1
+
+## Clearing up Ranking
+
+* with `Hand#ranking` an array is returned `return [9, four_of_a_kind_values]  if four_of_a_kind?`
+* the `#{category}_values` returned helps compare the correct cards depending on
+  the hand
+  * with a four of a kind, you'd want to first compare the 4 of a kind values
+  * ie 
+
+~~~ ruby
+
+  def four_of_a_kind_values
+    four_of_a_kind_value = cards_repeated_n_times(4)
+    single_card_value    = cards_repeated_n_times(1)
+    [four_of_a_kind_value, single_card_value].flatten
+  end
+~~~
+
+## Moving On
+
+* So that's going to be my first swing at refactoring this code base
+* Next, we'll actually refactor the code
+
+<br>
+
+---
+
+<br>
+

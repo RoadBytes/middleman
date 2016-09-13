@@ -1,0 +1,182 @@
+---
+title: 'TuneUp: Poker- Refactoring'
+date: 2016-09-13 16:11 UTC
+tags: tuneup, poker
+---
+
+* This is a refactoring of the Poker code base for **TuneUp: Poker**. <%= link_to 'Initial TuneUp: Poker- Post Here', '/technical/2016/09/08/tune-up-poker.html' %>
+* Here is a link to the <%= link_to 'Refactored TuneUp: Poker- GitHub Repo', 'https://github.com/RoadBytes/TuneUpPoker/tree/tune_up_poker_end' %>
+* For an explanation of **TuneUps** you can find it <%= link_to 'here', '/personal/2016/09/08/tune_up_explained.html' %>
+
+---
+
+The main idea of this refactor involves allowing `Hand`s to sort themselves.  At first, the `Poker` class was doing the work of sorting hands, and after adding a `Hand#<=>(other_hand)` method, we can simply call `Array::sort` on a collection of `Hand`s to get the "Best" hands.
+
+---
+
+# `Poker#best_hand` is SWEET!
+
+I first want to start with the pride and joy of allowing `Hand`s to `sort`
+themselves
+
+## Before
+
+~~~ ruby
+
+def best_hand
+  best_hands = best_ranked_hands
+  highest_card_value = 0
+  best_hands.each do |hand|
+    high_hand_value = hand.max_card_value
+    if high_hand_value > highest_card_value
+      highest_card_value = high_hand_value
+    end
+  end
+  best_hands.select { |hand| hand.max_card_value == highest_card_value }
+            .map(&:input)
+end
+~~~
+
+## After
+
+~~~ ruby
+
+def best_hand
+  best_hand = @hands.sort.last
+  @hands.select { |hand| hand.score_vector == best_hand.score_vector }
+        .map(&:output_hand)
+end
+~~~
+
+* You'll notice that the `Poker#best_hand` method is much more simple since we have `Array#sort` for `Hand`s
+* I've added a `Hand#score_vector` in place of `Hand#ranking` to better communicate how `Hand`s are compared to each other
+
+---
+
+# `Hand#score_vector`
+
+~~~ ruby
+
+def score_vector
+  @score_vector ||= calculate_score_vector
+end
+
+def calculate_score_vector
+  return 0 unless cards.size == 5
+  ranking = CATEGORY_RANKINGS[category]
+  [ranking, *sorted_hand]
+end
+~~~
+
+* we memoize `@score_vector` to optimize a bit
+* the `*` splat operator isn't necessary, but it helps flatten the `@score_vector`
+* instead of always iterating through all the categories, we now have a `Hand#category` method that classifies a hand and returns what category it belongs to.
+* this is a bit more consise since it has fewer lines, but there is a cost at abstracting the categories away.
+  * You'll need to refer to the `Hand::CATEGORY_RANKINGS` hash to see what the categories are.
+* This may help lead the way to cutting out the categorazation feature and having a `HandCategory` class.
+
+---
+
+# The Spaceship `Hand#<=>` Operator
+
+~~~ ruby
+
+def <=>(other_hand)
+  score_vector <=> other_hand.score_vector
+end
+~~~
+
+* This method takes a `Hand`s `#score_vector` that's an array,
+* and sorts `Hand`s though sorting `Array` objects
+* With this method, we now can sort `Hand`s
+
+---
+
+# While I was at it, I also refactored a few other things.
+
+## The `initialize` methods.
+
+* Generally, when initializing an object, an array of some objects were created
+  * for example, with `Poker::new` an array of `Hand`s were created.
+
+~~~ ruby
+
+def initialize(hand_array)
+  @hands = array_of_hands(hand_array)
+end
+
+def array_of_hands(hand_array)
+  temp_hands = []
+  hand_array.each do |hand|
+    temp_hands << Hand.new(hand)
+  end
+  temp_hands
+end
+~~~
+
+* This was cleared up by using the `Array#map` method.
+
+~~~ ruby
+
+def initialize(raw_hands)
+  @hands = raw_hands.map { |raw_hand| Hand.new(raw_hand) }
+end
+~~~
+
+* In my opinion, this is a bit clearer and concise
+
+## Cleaning up `Hand` categories
+
+* Again, I put all the categories in one place with a `Hand::CATEGORY_RANKINGS` hash.
+* With this, one can see all the different categories and ranking from one place.
+
+~~~ ruby
+
+CATEGORY_RANKINGS = {
+  straight_flush:  10,
+  four_of_a_kind:  9,
+  full_house:      8,
+  flush:            7,
+  straight:        6,
+  three_of_a_kind: 5,
+  two_pair:        4,
+  one_pair:        3,
+  high_card:       2
+}.freeze
+
+def calculate_category
+  CATEGORY_RANKINGS.each do |category, _rank|
+    return category if send("#{category}?")
+  end
+end
+~~~
+
+* There was a bit of Metaprogramming
+* We were able to call "#{category}?" on a hand instance, more generally, iterating through the keys of this hash.
+* Each category had a corresponding set of methods
+  * `"#{category}?"`: to determine if a hand belongs to this category
+  * `"#{category}_values"`: to organize the card values in the appropriate way
+    * ie. four of a kind values first, then, single cards
+      * four 4's and a ten
+      * would be, [4, 4, 4, 4, 10]
+    * ie. pair of a 10 values first, then, single cards
+      * a pair of 10's, a King, nine, and eight
+      * would be, [10, 10, 12, 9, 8]
+
+## Future refactoring
+
+* The next step in refactoring may be in creating a `HandCategory` Class
+* Poker categories don't change very much but we might want to add: 5 card hands, and wild cards, so this would help organize this feature.
+
+---
+
+# Conclusion
+
+Welp, that wraps it up for this RoadBytes TuneUp.  I hope you had a good time working through this `Poker` code base.  If you worked on this TuneUp yourself, create a repo and you can put a link to it in the comments below.
+
+
+<br>
+
+---
+
+<br>
