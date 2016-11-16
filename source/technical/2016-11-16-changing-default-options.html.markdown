@@ -96,7 +96,7 @@ This line `$("#search_radius").val(self.searchRadius);` says,
 ~~~
 
 looking at the top of `js/maps_lib.js` file, we can see where `searchRadius` is
-set and what the `value` attributes in the `<option>` tags represent.
+set, and what the `value` attributes in the `<option>` tags represent.
 
 * the `value=xxx` in the option tags are the number of miles in meters rounded to whole
   integers
@@ -112,6 +112,8 @@ Now, the page works as desired.
 ![Photo of select element final, with in 2 miles](radius_element_final.png)
 
 ---
+
+## In conclusion
 
 This was a bit weird since I'm not a front end guy 'yet', bc I would have
 altered the `HTML` directly as in:
@@ -129,7 +131,7 @@ altered the `HTML` directly as in:
 </label>
 ~~~
 
-I would have expected to just add `seleced` to the desired `<option>` and been
+I would have expected to just add `selected` to the desired `<option>` and been
 done with it...
 
 But, since the element was handled with javascript, the attributes would be
