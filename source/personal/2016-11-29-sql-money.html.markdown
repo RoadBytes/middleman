@@ -1,0 +1,70 @@
+---
+title: 'SQL Money'
+date: 2016-11-29 00:11 UTC
+tags: sql
+---
+
+# All the money on the world
+
+I was learning about Databases and apart from learning to
+[never use float type to represent money](https://www.noelherrick.com/blog/always-use-decimal-for-money),
+I also learned that ALL the money in the entire world is about $75 trillion US
+Dollars.  That's:
+
+> $75,000,000,000,000.00
+
+The reason that this would be significant is, a **BIGINT** data type has a range
+from *-9223372036854775808 to 9223372036854775807* [according to launch
+school](https://launchschool.com/books/sql/read/types#numbertypes).  This would
+be an ample amount of digits to accurately represent the number of US cents one
+would have.  The top limit being...
+
+> $92,233,720,368,547,758.08
+
+or 92 (thousand trillion? what comes after trillion) Dollars.
+
+So assuming, one person doesn't own MORE then all the money in the world in US
+Dallors about a 1000 times over, using the BIGINT data type should be
+sufficient to represent their account values in USD.
+
+Recommended data types to represent money are actually **DECIMAL(13, 2)**, or
+thirteen digits to hold in total, including 2 decimal points.  This limit brings
+us to 10 trillion dollars.  *Should be good right?*
+
+> $10,000,000,000.00
+
+## But, then what about inflated currency?
+
+So, as we all know, the USD isn't the only unit of currency in the world, so for
+different exchange rates, one would have to represent their currency and
+consider different ranges of values.  I Googled a bit and found out that the
+inflation rate for Hungary was [13.6 quadrillion
+percent](https://www.quora.com/What-are-the-most-hyperinflated-currencies-today-and-of-all-time)
+[Oh, that's what's after trillion] per MONTH! at one time, or in other words...
+
+> 13600000000000000 %.
+
+I'm thinking that would mean if you had x USD worth of 100 Hungarian Pengos,
+that would be '100 x (136000000000000)' after a month, and
+
+> 13600000000000000 x (136000000000000)
+
+or in other words... *a number MORE then the biggest number possible to
+represent currency in the database.*
+
+I'm guessing basic operations don't apply for numbers outside the range...
+
+Things like `-99999999999999999999 + 1 = +99999999999999999999` would surface.
+(Maybe you should go into major debt, and once you owe more money then there is
+in the entire world, the computer will break, and you'll be rich.
+
+## Is this a problem?
+
+I'm not sure what would need to happen in these situations.  I remember back in
+the **Y2K** era, people were freaking out about the year 2000, breaking
+computers around the world.  It's interesting how advantageous it is to have
+computers, and at the same time problematic as we become more dependent on
+technology.
+
+Anyway, onward with databases.  I wonder what I'll learn next.
+
