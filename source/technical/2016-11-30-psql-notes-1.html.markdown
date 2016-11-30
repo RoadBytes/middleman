@@ -1,0 +1,113 @@
+---
+title: 'PSQL Notes 1'
+date: 2016-11-30 06:45 UTC
+tags: notes, psql
+---
+
+# Launch School Notes: Schema, Data, and SQL
+
+There are things I'm learning as I go through the Postgres course of Launch
+School. This post are notes from,
+
+4. Loading Database Dumps
+5. More Single Table Queries
+
+---
+
+## Two ways to load files:
+
+* From command line:
+  `$ psql -d my_database < file_to_import.sql`
+* With SQL
+  `my_database=# \i ~/some/files/file_to_import.sql`
+
+## `WHERE` must be provided a boolean.
+
+In Ruby, arguments to `if` can be any object, and it is satisfied if the
+argument is anything but `false` or `nil`.
+
+I was playing around with psql and the `WHERE` clause can only take arguments of
+type boolean.
+
+Here's how I know,
+
+~~~
+
+SELECT * FROM people
+WHERE substring(email from 'teleworm.us') = 'teleworm.us';
+~~~
+
+returns records.
+
+---
+
+~~~
+
+SELECT * FROM people
+WHERE substring(email from 'teleworm.us');
+~~~
+
+returns an error
+
+~~~
+
+ERROR:  42804: argument of WHERE must be type boolean, not type text
+LINE 1: select * from people where substring(email from 'teleworm.us...
+                                   ^
+LOCATION:  coerce_to_boolean, parse_coerce.c:1044
+~~~
+
+## Using `LIKE` to match
+
+Above, I used `WHERE substring(email from 'teleworm.us') = 'teleworm.us';`
+
+But it's likely to be more standard to instead `WHERE email LIKE
+'%teleworm.us';`
+
+## `count(id)` or `count(*)`
+
+These methods will count rows with the argument, but the later includes `NULL`
+columns with values and the former does not.
+
+I had a row like so:
+
+~~~
+
+id             | 2
+given_name     | PENNY
+middle_initial | J
+surname        | Guerrero
+street         | 3389 Sugar Camp Road
+city           | Adrian
+state          | MN
+zipcode        | 56110
+email          | PennyJGuerrero@teleworm.us
+username       | Hisaim
+telephone      | 507-483-6867
+birthday       | 1975-05-31
+occupation     | Supply manager
+company        | [NULL]
+~~~
+
+and the following statements returned the following
+
+`SELECT count(company) FROM people WHERE id = 2;` returned 0
+`SELECT count(*) FROM people WHERE id = 2;` returned 1
+
+## `GROUP BY(exp)` must have an aggregate function.
+
+> PostgreSQL must have an aggregate function (MAX, SUM, etc) on the column, on
+> which the GROUP BY clause is issued.
+
+http://stackoverflow.com/questions/1769361/postgresql-group-by-different-from-mysql
+
+This means that with:
+
+~~~
+
+SELECT state,
+  count(*)
+FROM people GROUP BY state ORDER BY count(*) DESC;
+~~~
+
+`count(*)` counts rows with the same state.
