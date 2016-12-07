@@ -9,8 +9,8 @@ tags: notes, psql
 There are things I'm learning as I go through the Postgres course of Launch
 School. This post are notes from,
 
-4. Loading Database Dumps
-5. More Single Table Queries
+'4. Loading Database Dumps'
+'5. More Single Table Queries'
 
 ---
 
@@ -59,10 +59,13 @@ LOCATION:  coerce_to_boolean, parse_coerce.c:1044
 
 ## Using `LIKE` to match
 
-Above, I used `WHERE substring(email from 'teleworm.us') = 'teleworm.us';`
+Above, I used
 
-But it's likely to be more standard to instead `WHERE email LIKE
-'%teleworm.us';`
+`WHERE substring(email from 'teleworm.us') = 'teleworm.us';`
+
+But it's likely to be more standard to instead
+
+`WHERE email LIKE '%teleworm.us';`
 
 ## `count(id)` or `count(*)`
 
@@ -99,7 +102,7 @@ and the following statements returned the following
 > PostgreSQL must have an aggregate function (MAX, SUM, etc) on the column, on
 > which the GROUP BY clause is issued.
 
-http://stackoverflow.com/questions/1769361/postgresql-group-by-different-from-mysql
+[quote was from here](http://stackoverflow.com/questions/1769361/postgresql-group-by-different-from-mysql)
 
 This means that with:
 
