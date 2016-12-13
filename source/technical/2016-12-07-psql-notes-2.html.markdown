@@ -15,34 +15,38 @@ School. This post are notes from,
 
 ## Setting a default value
 
-```
+~~~
+
 ALTER TABLE employees ALTER COLUMN department SET DEFAULT 'unassigned';
-```
+~~~
 
 ## changing the data
 
-```
+~~~
+
 UPDATE employees SET department = 'unassigned' where department is null;
-```
+~~~
 
 ---
 
-> 2. Set the default value of column department to "unassigned". Then set the
+> \2. Set the default value of column department to "unassigned". Then set the
 >    value of the department column to "unassigned" for any rows where it has a
 >    NULL value. Finally, add a NOT NULL constraint to the department column.
 
-```
+~~~
+
 ALTER TABLE employees ALTER COLUMN department SET DEFAULT 'unassigned';
 UPDATE employees SET department = 'unassigned' WHERE department IS NULL;
 ATLER TABLE employees ALTER COLUMN department SET NOT NULL;
-```
+~~~
 
 ---
 
-> 3. Write the SQL statement to create a table called temperatures to hold the
+> \3. Write the SQL statement to create a table called temperatures to hold the
 >    following data:
 
-```
+~~~
+
 CREATE TABLE temperatures (
   date DATE NOT NULL,
   low  INTEGER NOT NULL,
@@ -60,39 +64,42 @@ INSERT INTO temperatures (date, low, high) VALUES
   ('2016-03-08', 23, 31),
   ('2016-03-09', 17, 28)
 
-```
+~~~
 
 I first didn't add '' 's around DATE
 INSERT INTO temperatures (date, low, high) VALUES (2016-03-01, 34, 43);
 
 ---
 
-> 5. Write a SQL statement to determine the average (mean) temperature for the
+> \5. Write a SQL statement to determine the average (mean) temperature for the
 >    days from March 2, 2016 through March 8, 2016.
 
 * my first attempt
 
-```
+~~~
+
 SELECT (avg(low) + avg(high)) / 2
 FROM temperatures
 WHERE date >= '2016-03-02' AND date <= '2016-03-08'
-```
+~~~
 
 * my second attempt
 
-```
+~~~
+
 SELECT date, (low + high) / 2 as average
 FROM temperatures
 WHERE date >= '2016-03-02' AND date <= '2016-03-08'
-```
+~~~
 
 * answer
 
-```
+~~~
+
 SELECT date, (high + low) / 2 as average
 FROM temperatures
 WHERE date BETWEEN '2016-03-02' AND '2016-03-08';
-```
+~~~
 
 * response
 
@@ -100,27 +107,30 @@ I like the `BETWEEN` keyword
 
 ---
 
-> 6. Write a SQL statement to add a new column, rainfall, to the temperatures
+> \6. Write a SQL statement to add a new column, rainfall, to the temperatures
 >    table. It should store millimeters of rain as integers and have a default
 >    value of 0.
 
 * my first attempt
 
-```
+~~~
+
 ALTER TABLE temperatures INSERT COLUMN rainfall INTEGERS DEFAULT 0;
-```
+~~~
 
 * my second attempt
 
-```
+~~~
+
 ALTER TABLE temperatures ADD COLUMN rainfall INTEGER DEFAULT 0;
-```
+~~~
 
 * answer
 
-```
+~~~
+
 ALTER TABLE temperatures ADD COLUMN rainfall integer DEFAULT 0
-```
+~~~
 
 * response
 
@@ -129,13 +139,14 @@ lowercase
 
 ---
 
-> 7. Each day, it rains one millimeter for every degree the average temperature
+> \7. Each day, it rains one millimeter for every degree the average temperature
 >    goes above 35. Write a SQL statement to update the data in the table
 >    temperatures to reflect this.
 
 * my first attempt
 
-```
+~~~
+
 select (high + low) / 2 - 35 as mm from temperatures where rainfall >= 0;
 
 UPDATE temperatures
@@ -144,15 +155,16 @@ SET rainfall = (high + low) / 2 - 35;
 UPDATE temperatures
 SET rainfall = 0
 WHERE rainfall < 0;
-```
+~~~
 
 * answer
 
-```
+~~~
+
 UPDATE temperatures
    SET rainfall = (high + low) / 2 - 35
  WHERE (high + low) / 2 > 35;
-```
+~~~
 
 * response
 
@@ -161,7 +173,7 @@ I didn't realize I should have just rewritten that whole
 
 ---
 
-> 8. A decision has been made to store rainfall data in inches. Write the SQL
+> \8. A decision has been made to store rainfall data in inches. Write the SQL
 >    statements required to modify the rainfall column to reflect these new
 >    requirements.
 
@@ -171,25 +183,28 @@ I didn't realize I should have just rewritten that whole
 
 ## change integer to float or decimal(
 
-```
+~~~
+
 ALTER TABLE temperatures
 ALTER COLUMN tests TYPE numeric(4, 3);
-```
+~~~
 
 ## change the value by multiplying by 0.0393701 inches/mm
 
-```
+~~~
+
 UPDATE temperatures
    SET rainfall= ((high + low) / 2 - 35) * 0.0393701
  WHERE (high + low) / 2 > 35;
-```
+~~~
 
 * answer
 
-```
+~~~
+
 ALTER TABLE temperatures ALTER COLUMN rainfall TYPE numeric(6,3);
 UPDATE temperatures SET rainfall = rainfall * 0.039;
-```
+~~~
 
 * response
 
