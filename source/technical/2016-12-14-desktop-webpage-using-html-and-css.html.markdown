@@ -4,7 +4,7 @@ date: 2016-12-14 02:24 UTC
 tags: quick tutorials
 ---
 
-## Objectives:
+## Objectives: *'Very'* High level view of HTML and CSS
 
 * use the terminal
 * create a webpage from the desktop
@@ -14,11 +14,13 @@ tags: quick tutorials
 
 ## Quick Review
 
-HTML: Hyper Text Markup Language
+### HTML: Hyper Text Markup Language
+
 * It's a Domain Specific Language in which content is stored for the web
 * uses tags and attributes
 
-CSS:  Cascading Stylesheets
+### CSS:  Cascading Stylesheets
+
 * A way to separate styling from content
 * generally adds styling through: tags, classes, and ids
 
@@ -49,7 +51,6 @@ CSS:  Cascading Stylesheets
 <head>
 
   <title>Page Title</title>
-  <link rel="stylesheet" href="css/styles.css">
   <style>
     .loud {
       color: red;
@@ -66,9 +67,11 @@ CSS:  Cascading Stylesheets
 </html>
 ~~~
 
-### in the wild
+---
 
-[w3schools sample in browser](http://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float)
+## in the wild
+
+### [w3schools sample in browser](http://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float)
 
 * multiple assignments
 * gotcha's: last styling definition will be executed
