@@ -6,6 +6,8 @@ tags: code review
 
 # First Take
 
+~~~ ruby
+
 def rotate_rightmost_digits(integer, n)
   stringified = integer.to_s
   index       = (stringified.size - 1) - n
@@ -38,11 +40,14 @@ def rotate_string(string)
   rotated = rotate_array string.chars
   rotated.join
 end
+~~~
 
-## Wow, that was so freaking long, I'm thinking it's becuase I kept getting
-## mixed up between a string and an array... I should have stuck to one type
+Wow, that was so freaking long, I'm thinking it's becuase I kept getting mixed
+up between a string and an array... I should have stuck to one type
 
 # Second Take
+
+~~~ ruby
 
 def rotate_rightmost_digits(integer, n)
   all_digits = integer.to_s.chars
@@ -57,6 +62,7 @@ def rotate_array(array)
   copy.push first_item
   copy
 end
+~~~
 
 # Review
 
