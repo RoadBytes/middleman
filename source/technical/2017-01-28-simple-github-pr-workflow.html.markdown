@@ -205,7 +205,8 @@ Are you back?  Ok great!
 
 Now, when you go to the website, you should see your changes taken place!
 
-![updated site](/images/updated-site.png)
+![updated member page](/images/updated-member-page.png)
+![added jason profile](/images/updated-profile.png)
 
 ---
 
