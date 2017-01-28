@@ -6,10 +6,17 @@ tags: github
 
 One of the things a web developer needs to get comfortable with is working with
 GitHub.  I've made a simple static site for 'Melbourne Code Reading Club' to
-practice how this works.  The cool thing is, when changes are merged, the actual
-site will record the changes.
+practice how this works.  The cool thing is, when changes in the repository are
+merged, the actual site will record the changes.
 
-Here is the site before the changes were made on the members page:
+- here is a link to the site
+  https://roadbytes.github.io/melbourne-code-reading-club/
+
+- here is a link to the repo
+  https://github.com/RoadBytes/melbourne-code-reading-club
+
+Here is a screen capture of site before the changes were made on the members
+page:
 
 ![member page before changes](/images/member-page-before-changes.png)
 
@@ -36,8 +43,8 @@ You can do this with:
 
 `$ git clone https://github.com/RoadBytes/melbourne-code-reading-club.git`
 
-and then you can see that a folder was copied onto your computer through listing
-file in your current directory
+You can see that a folder was copied onto your computer by listing files in your
+current directory
 
 `$ ls`
 
@@ -50,11 +57,12 @@ The whole thing should look something like this:
 # Create a local branch
 
 Now that the remote repository has been copied, you have a **local** repository
-you can work with.  Change into the local file (aka 'local repository'):
+you can work with.  Change Directory into the local file (aka 'local
+repository'):
 
 `$ cd melbourne-code-reading-club`
 
-To make sure you're changes are all together, create your own branch and will 
+To make sure your changes are all together, create your own branch and we'll
 save (aka 'commit') your changes to this branch.
 
 `$ git checkout -b <branch-name>`
@@ -78,15 +86,15 @@ So, I'll need to have a file `/members/jason.html` in the root folder.
 
 Here, I can make my page to be anything I want, but I'd want the layout to be
 the same as the other pages.  I'll just do this by copying the following text.
-Be sure to note: the navigation has `../` in the path to return to the root file
-first.
+Be sure to note: the navigation has `../` in the path to return to the root
+folder first.
 
 ~~~ html
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MCRC: Home</title>
+    <title>MCRC: Jason</title>
   </head>
   <body>
     <nav>
@@ -126,9 +134,9 @@ On the members page...
 
 Now that we've made this dope stuff, we can commit this code to our local branch
 
-`$ git add --all` simply adds everything to the next commit
-`$ git status` checks status of working directory
-`$ git commit -m <commit message>` creates a commit and saves code base
+* `$ git add --all` simply adds everything to the next commit
+* `$ git status` checks status of working directory (optional)
+* `$ git commit -m <commit message>` creates a commit and saves code base
 
 The whole thing should look something like this:
 
@@ -138,14 +146,14 @@ The whole thing should look something like this:
 
 # Get push invitation from RoadBytes
 
-Make sure that RoadBytes know's your GitHub handle and has added you as a
+Make sure that RoadBytes knows your GitHub handle and has added you as a
 collaborator to the repository.
 
 Then, you can visit:
 
 [https://github.com/RoadBytes/melbourne-code-reading-club/invitations](https://github.com/RoadBytes/melbourne-code-reading-club/invitations)
 
-and accept the invitaion. 
+and accept the invitation. 
 
 The whole thing should look something like this:
 
@@ -161,6 +169,9 @@ main branch.
 
 `$ git push origin <branch-name>`
 
+This command says to push your branch on your local repo and add it to the
+remote repo.  It's implied that the remote repository will then have a branch of
+the same name.
 
 The whole thing should look something like this:
 
@@ -170,7 +181,7 @@ The whole thing should look something like this:
 
 # Make a Pull Request (PR)
 
-Now, when you go to the Remote Repository, you can make navigate to the
+Now, when you go to the Remote Repository, you can navigate to remote repository
 branches, find your branch and make a pull request (PR)!
 
 You're essentially taking the branch you've made, and laying those changes on
@@ -192,6 +203,11 @@ The whole thing should look something like this:
 
 ## Merge Pull Request
 
+* Generally, a senior developer or another person would give a code review
+* You'd probably have to make more changes before you can merge
+* This is a cool way to see what you did since there is a differential between
+  your code and the merging branch
+
 ![merge pr](/images/merge-pr.png)
 
 ---
@@ -206,6 +222,9 @@ Are you back?  Ok great!
 Now, when you go to the website, you should see your changes taken place!
 
 ![updated member page](/images/updated-member-page.png)
+
+And a brand new profile page
+
 ![added jason profile](/images/updated-profile.png)
 
 ---
