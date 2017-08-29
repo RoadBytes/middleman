@@ -2,6 +2,7 @@
 title: 'AMPing Up Motivation'
 date: 2017-01-29 04:30 UTC
 tags: motivation
+published: false
 ---
 
 ![Face](yo.jpg)
