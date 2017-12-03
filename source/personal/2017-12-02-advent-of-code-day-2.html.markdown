@@ -1,6 +1,6 @@
 ---
 title: Advent of Code (Day 2)
-date: 2017-12-03 01:21 UTC
+date: 2017-12-02 01:21 UTC
 tags: Advent of Code, Day 2
 ---
 
