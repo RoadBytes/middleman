@@ -30,3 +30,14 @@
     @include span-columns(9);
   }
 }
+
+@media(max-width: 400px) {
+  .listed-post {
+    h1,
+    h2,
+    h3,
+    .listed-post__title {
+      font-size: 1.3rem; 
+    }
+  }
+}

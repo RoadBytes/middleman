@@ -1,6 +1,6 @@
 ---
 title: Advent of Code (Day 3)
-date: 2017-12-03
+date: 2017-12-03 12:21 UTC
 tags: Advent of Code, Day 3
 ---
 
@@ -76,7 +76,8 @@ sum at n == 601 is Vector[300, -300]
 
 Vector[300 + 1, -300 + 325]
 
-[301, 25] and Mahattan distance would be 301 + 25 = 326
+[301, 25] and Mahattan
+distance would be 301 + 25 = 326
 
 326 total steps to square 1
 ~~~
@@ -89,7 +90,7 @@ understand what was happening.  The pattern I found above didn't make sense so I
 gave it another looksee and found the following pattern.
 
 | step | change in distance |
-| --- | --- |
+| :---: | --- |
 | 1  | +x step right |
 | 2  | +y step up |
 | 3  | -x step back |
@@ -117,7 +118,8 @@ Also, I used a hash to store the values for each place on the grid.  I'm not
 sure if `Vector`'s make good keys so I just used an array of the `Vextor`'s x
 and y position.
 
-~~~
+~~~ ruby
+
 require 'matrix'
 
 class Grid
@@ -131,8 +133,11 @@ class Grid
 
   def self.set_current_value
     @@current_place += next_step
-    value = get_grid_values_around(@@current_place) # I didn't need an arg but don't care to refactor atm
-    @@grid_values[ [@@current_place[0], @@current_place[1]] ] = value
+    # I didn't need an arg but don't care to refactor atm
+    value = get_grid_values_around(@@current_place)
+    @@grid_values[
+      [@@current_place[0], @@current_place[1]]
+      ] = value
   end
 
   def self.next_step

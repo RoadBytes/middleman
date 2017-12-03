@@ -2,3 +2,9 @@
   @include outer-container;
   padding: $base-spacing;
 }
+
+@media(max-width: 400px) {
+  .content {
+    padding: 10px;
+  }
+}
