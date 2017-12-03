@@ -21,10 +21,10 @@ along, DO IT ASAP!
 ### Are there cheaters?
 
 I looked into Reddit, and found that Advent participants go all in and skip to
-the story to make it on the leader board.  They bank of their experience from
-previous challenges to get an idea of what they have to do and just pump out the
-answer and cross their fingers they did it correctly.  I'm sure there are a ton
-of other ways to cheat as well.
+the story to make it on the leader board.  They bank off of their experience
+from previous challenges to get an idea of what they have to do and just pump
+out the answer and cross their fingers they did it correctly.  I'm sure there
+are a ton of other ways to cheat as well.
 
 #### A possible hack
 
@@ -138,7 +138,7 @@ def check_sum_ratio(row)
   end
 end
 
-check_sum_ratios = sorted_rows.map{|row| even_divide(row)}
+check_sum_ratios = sorted_rows.map{|row| check_sum_ratio(row)}
 sum_check = check_sum_ratios.inject(:+)
 
 puts sum_check
