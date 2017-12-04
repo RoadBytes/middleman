@@ -12,8 +12,8 @@ For the first one you had lines of 'passwords', and you couldn't have repeat wor
 
 The second one, you couldn't have any words as anagrams of each other.
 
-I created a `letter_spectrum`, an array of the letters of each word sorted to
-anagram words would have the same `letter_spectrum`.
+I created a `letter_spectrum`, an array of the letters of each word sorted so
+two anagram words would have the same `letter_spectrum`.
 
 ~~~ ruby
 
