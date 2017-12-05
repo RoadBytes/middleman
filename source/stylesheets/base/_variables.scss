@@ -26,6 +26,7 @@ $base-z-index: 0;
 
 // Colors
 $black:  #000;
+$dark-grey:   #121212;
 $grey:   #666;
 $olive:  #60a020;
 $orange: #c06000;
@@ -45,7 +46,7 @@ $base-border-color: $accentone;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: $black;
+$base-background-color: $dark-grey;
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Forms
