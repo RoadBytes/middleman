@@ -117,5 +117,7 @@ code {
 
 pre.highlight {
   background-color: $accentone;
+  overflow-x: scroll;
   padding-left: 10px;
+  white-space: pre;
 }
